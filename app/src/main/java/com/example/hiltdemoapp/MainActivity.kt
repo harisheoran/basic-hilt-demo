@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.hiltdemoapp.databinding.ActivityMainBinding
-import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -16,6 +17,9 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by lazy {
         ViewModelProvider(this)[MyViewModel::class.java]
     }
+
+    @Inject
+    lateinit var picassoUtil: PicassoUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -29,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.image.observe(this) {
-            Picasso.get().load(it).into(binding.imageView)
+            picassoUtil.loadImage(it, binding.imageView)
         }
     }
 

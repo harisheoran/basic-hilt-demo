@@ -1,6 +1,8 @@
 package com.example.hiltdemoapp
 
-class MyService {
+import javax.inject.Inject
+
+class MyService @Inject constructor() {
     private val imageUrls = listOf(
         "https://cdn.pixabay.com/photo/2023/06/26/04/37/ai-generated-8088679_960_720.jpg",
         "https://cdn.pixabay.com/photo/2023/07/15/01/50/student-8127943_960_720.jpg",

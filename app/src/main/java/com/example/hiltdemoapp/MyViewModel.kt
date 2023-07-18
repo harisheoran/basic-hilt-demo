@@ -3,9 +3,11 @@ package com.example.hiltdemoapp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MyViewModel : ViewModel() {
-    private val repository = MyRepository()
+@HiltViewModel
+class MyViewModel @Inject constructor(private val repository: MyRepository) : ViewModel() {
 
     private val _image = MutableLiveData<String>()
     val image: LiveData<String> = _image
